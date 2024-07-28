@@ -33,7 +33,7 @@ pipeline {
 
         stage('Build and Push Docker Image') {
             environment {
-                DOCKER_IMAGE = "iamsakib/argocd-app:${BUILD_NUMBER}"
+                DOCKER_IMAGE = "ankit11223/argocd-app:${BUILD_NUMBER}"
                 REGISTRY_CREDENTIALS = credentials('docker-cred')
             }
             steps {
