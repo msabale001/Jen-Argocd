@@ -22,7 +22,7 @@ pipeline {
 
         stage('Static Code Analysis') {
             environment {
-                SONAR_URL = "http://34.239.140.71:9000"
+                SONAR_URL = "http://54.162.29.87:9000"
             }
             steps {
                 withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
@@ -33,7 +33,7 @@ pipeline {
 
         stage('Build and Push Docker Image') {
             environment {
-                DOCKER_IMAGE = "iamsakib/argocd-app:${BUILD_NUMBER}"
+                DOCKER_IMAGE = "ankit11223/argocd-app:${BUILD_NUMBER}"
                 REGISTRY_CREDENTIALS = credentials('docker-cred')
             }
             steps {
@@ -50,13 +50,13 @@ pipeline {
         stage('Update Deployment File') {
             environment {
                 GIT_REPO_NAME = "Jen-Argocd"
-                GIT_USER_NAME = "isakibshaikh1"
+                GIT_USER_NAME = "ankit11223"
             }
             steps {
                 withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                     sh '''
-                        git config user.email "sakeeb.y.shaikh@gmail.com"
-                        git config user.name "isakibshaikh1"
+                        git config user.email "ankitmoon46@gmail.com"
+                        git config user.name "17-ankit"
                         BUILD_NUMBER=${BUILD_NUMBER}
                         sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
                         git add java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
