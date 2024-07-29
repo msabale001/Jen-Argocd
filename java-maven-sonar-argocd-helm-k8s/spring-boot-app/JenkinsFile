@@ -48,7 +48,7 @@ pipeline {
         stage('Update Deployment File') {
             environment {
                 GIT_REPO_NAME = "Jen-Argocd"
-                GIT_USER_NAME = "ankit11223"
+                GIT_USER_NAME = "17-ankit"
             }
             steps {
                 withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
